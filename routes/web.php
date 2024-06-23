@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\FooterController;
+use App\Http\Controllers\SiteSettingsController;
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/',[WelcomeController::class,'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/site_settings',SiteSettingsController::class);
+Route::post('/site_settings/{id}/publish',[SiteSettingsController::class,'publish'])->name('site_settings.publish');
+
+Route::resource('/footer',FooterController::class)->middleware('auth');
+Route::post('/footer/{id}/publish',[FooterController::class,'publish'])->name('footer.publish');

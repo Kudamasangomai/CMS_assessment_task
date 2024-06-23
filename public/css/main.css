@@ -1978,7 +1978,7 @@ ol {
 .hero-area {
   position: relative;
   padding: 180px 0 120px 0;
-  background: #ff6b81;
+  /* background: #ff6b81; */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2442,7 +2442,7 @@ ol {
     Call To Action CSS
 ========================================*/
 .call-action {
-  background-color: #ff6b81;
+  background-color:transparent;
 }
 
 .call-action .cta-content {
