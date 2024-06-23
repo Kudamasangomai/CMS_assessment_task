@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hero;
 use App\Models\Footer;
 use App\Models\SiteSettings;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class WelcomeController extends Controller
    
         $site = SiteSettings::where('status', 'Active')->first();
         $footer = Footer::where('published','Yes')->first();
-        return view('welcome',compact('site','footer'));
+        $hero = Hero::first();
+        return view('welcome',compact('site','footer','hero'));
     }
 }

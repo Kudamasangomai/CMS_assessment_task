@@ -91,6 +91,11 @@ a:focus {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    list-style:none;
+}
+
+li{
+    list-style-type: none  
 }
 
 #sidebar ul li a:hover {
