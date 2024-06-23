@@ -7,6 +7,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SiteSettingsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/footer/{id}/publish',[FooterController::class,'publish'])->name('footer.publish'); 
     
     Route::resource('/hero',HeroController::class);
+
+    Route::resource('/services',ServiceController::class);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });

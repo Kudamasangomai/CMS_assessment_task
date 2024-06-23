@@ -13,7 +13,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('admin.Servicess.services',compact('services'));
     }
 
     /**
@@ -29,7 +30,18 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        try {
+
+            if (Service::count() >= 6) {
+                throw new \Exception('You can only create a maximum of 6 service records.');
+              }
+            $data = $request->validated();
+            Service::create($data);
+            return redirect()->route('success-route')->with('message', 'Data created successfully!');
+          } catch (\Exception $e) {
+
+            return back()->withErrors(['error' => 'There was an error creating the data. Please try again.']);
+          }
     }
 
     /**
