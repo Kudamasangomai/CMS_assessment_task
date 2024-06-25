@@ -17,10 +17,10 @@
     <thead>
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">site_tagline</th>
-          <th scope="col">site_icon</th>
-          <th scope="col">The Colour</th>
-          <th scope="col">Status</th>
+          <th scope="col">Tag Line</th>
+          <th scope="col">Site Icon</th>
+          <th scope="col">Status </th>
+          <th scope="col">Theme Colour</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -35,9 +35,9 @@
           <td>{{ $site->site_tagline }}</td>
           <td>{{ $site->site_icon }}</td>
           <td>{{ $site->Status }}</td>
-          <td>{{ $site->site_colour }}</td>
-          <td>View |
-            <a href="{{ route('site_settings.edit',$site->id) }}"> Edit</a> | 
+          <td style="background-color: {{ $site->site_colour }}">{{ $site->site_colour }} </td>
+          <td>
+            <a href="{{ route('site_settings.edit',$site->id) }}"> Edit</a> 
              
             <form action="{{ route('site_settings.destroy',$site) }}" method="POST">
               @csrf

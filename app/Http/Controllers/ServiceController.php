@@ -33,14 +33,14 @@ class ServiceController extends Controller
         try {
 
             if (Service::count() >= 6) {
-                throw new \Exception('You can only create a maximum of 6 service records.');
+                return back()->with(['error' => 'You are Limited To 6 records only.']);
               }
             $data = $request->validated();
             Service::create($data);
-            return redirect()->route('success-route')->with('message', 'Data created successfully!');
+            return redirect()->back()->with(['success' => 'Data created successfully!']);
           } catch (\Exception $e) {
 
-            return back()->withErrors(['error' => 'There was an error creating the data. Please try again.']);
+            return redirect()->back()->with(['error' => 'There was an error creating the data. Please try again.']);
           }
     }
 

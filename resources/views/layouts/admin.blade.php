@@ -19,10 +19,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 </head>
 
 <body>
-
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -30,7 +32,7 @@
                 <h3>Assessment </h3>
             </div>
 
-            <ul >
+            <ul>
 
                 <li>
                     <h4>General</h4>
@@ -42,7 +44,6 @@
                     </ul>
                 </li>
             </ul>
-
             <ul class="" style=" list-style:none">
 
                 <li class="active">
@@ -52,13 +53,13 @@
                             <a href="/hero">Hero Section</a>
                         </li>
                         <li>
-                            <a href="#">About Us</a>
+                            <a href="/about">About Us</a>
                         </li>
                         <li>
                             <a href="/services">Services</a>
                         </li>
                         <li>
-                            <a href="#">Prices</a>
+                            <a href="/prices">Prices</a>
                         </li>
 
                         <li>
@@ -67,8 +68,6 @@
 
                         <li>
                         <li class="nav-item">
-
-
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -85,15 +84,22 @@
             </li>
             </ul>
 
-
         </nav>
-
-
         <div id="content">
+            <div class="col-md-12 text-center">
+                @include('layouts.messages')
 
+            </div>
+            <button class="btn btn-success">Click Me</button>
             @yield('content')
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#message').delay(2000).fadeOut();
+        });
+    </script>
 </body>
 
 </html>

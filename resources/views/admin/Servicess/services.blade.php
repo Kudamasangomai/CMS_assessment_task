@@ -53,7 +53,7 @@
             @forelse ($services as $services)
                 <tr>
 
-                    <td>>{{ $services->title }}</a></td>
+                    <td>{{ $services->title }}</a></td>
                     <td>{{ $services->description }}</td>
 
                     <td>

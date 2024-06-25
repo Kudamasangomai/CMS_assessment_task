@@ -58,18 +58,25 @@
                 </div>
             </div>
 
+            @if ($hero)
             <div class="col">
                 <h6>Current feature image</h6>
-        <img src="{{ asset('storage/'.$hero->image) }}" width="250px" height="300px" />
+        <img src="{{ asset('storage/' . ($hero->image ? $hero->image : '')) }}"  width="250px" height="300px" />
             </div>
+            @else
+                
+            @endif
+           
+            
 
         </div>
 
-        {{-- <div class="col-12 mt-3 mb-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div> --}}
         <br/>
-        
+                 {{-- <div class="col">
+                <h6>Current feature about_image</h6>
+                <img src="{{ asset('storage/' . ($about->about_image ? $about->about_image : '')) }}" 
+                width="250px" height="300px" alt="About Us Image">
+            </div> --}}
         
 
     </form>

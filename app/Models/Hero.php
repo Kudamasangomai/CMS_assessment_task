@@ -16,8 +16,8 @@ class Hero extends Model
         'description',
         'button_text_one',
         'button_text_two',
-        'image',
-        'user_id',
+        'image'
+    
 
     ];
 

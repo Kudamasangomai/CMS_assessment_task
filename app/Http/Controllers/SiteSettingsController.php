@@ -34,10 +34,21 @@ class SiteSettingsController extends Controller
     {
 
 
-        $sitedata = $request->validated();
-        $sitedata['user_id'] = Auth::user()->id;
-        $newsitesetting =  SiteSettings::create($sitedata);
-        return redirect()->route('site_settings.show', $newsitesetting->id)->with('success', 'Site Seeting Created');
+
+
+        try {
+
+            if (SiteSettings::count() >= 3) {
+                return back()->with(['error' => 'You can only create a maximum of 3 Record records']);
+            }
+            $sitedata = $request->validated();
+            $sitedata['user_id'] = Auth::user()->id;
+            $newsitesetting =  SiteSettings::create($sitedata);
+            return redirect()->route('site_settings.show', $newsitesetting->id)->with('success', 'Site Seeting Created');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with(['error' => 'There was an error creating the data. Please try again.']);
+        }
     }
 
     /**
@@ -72,21 +83,20 @@ class SiteSettingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSiteSettingsRequest $request,$id)
+    public function update(UpdateSiteSettingsRequest $request, $id)
     {
-      
+
         $site = SiteSettings::find($id);
         $request->validated();
-    
+
         $site->update([
             "site_title" => $request->site_title,
             "site_tagline" =>  $request->site_tagline,
             "site_icon" =>  $request->site_icon,
             "site_colour" =>  $request->site_colour,
         ]);
-      
+
         return redirect()->route('site_settings.show', $site->id)->with('success', 'Site Settings Updated');
-    
     }
 
     /**
@@ -94,15 +104,17 @@ class SiteSettingsController extends Controller
      */
     public function destroy($id)
     {
-        $recordexists = SiteSettings::find($id)->where('Status', 'Active')->exists();
-         
-       
-        if ( $recordexists){
-            return redirect()->back()->with('error', 'Can not delete.');
-        }             
-        $recordexists->delete();
-        return redirect()->route('admin.sitesettings.index')->with('success', 'Site setting deleted successfully!');
+        $record = SiteSettings::where('id', $id)->first();
 
-        
+    if (!$record) {
+        return redirect()->back()->with('error', 'Record not found.');
     }
+
+    if ($record->Status !== 'Active') {
+        $record->delete();
+        return redirect()->route('site_settings.index')->with('success', 'Site setting deleted successfully!');
+    }
+
+    return redirect()->back()->with('error', 'Can not delete An Active Setting.');
+}
 }

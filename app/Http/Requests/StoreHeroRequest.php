@@ -23,9 +23,9 @@ class StoreHeroRequest extends FormRequest
     {
         return [
             'title'=> 'required',
-            'description'=> 'required|min:10',
-            'button_text_one'=> 'required|max:15',
-            'button_text_two'=> 'required|max:15',
+            'description'=> 'required|min:1',
+            'button_text_one'=> 'required|min:1',
+            'button_text_two'=> 'required|min:1',
             'image'=> 'image|mimes:jpeg,jpg,png,gif',
         ];
     }

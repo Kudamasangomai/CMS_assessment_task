@@ -16,7 +16,7 @@ class FooterController extends Controller
     public function index()
     {
         $footer = Footer::all();
-        return view('admin.footer.footer',compact('footer'));
+        return view('admin.footer.footer', compact('footer'));
     }
 
     /**
@@ -24,7 +24,6 @@ class FooterController extends Controller
      */
     public function create()
     {
-     
     }
 
     /**
@@ -32,26 +31,36 @@ class FooterController extends Controller
      */
     public function store(StoreFooterRequest $request)
     {
-        $footerdata = $request->validated();
-        Footer::create($footerdata);
-        return redirect()->back()->with('Success', 'Footer created Succesfully');
+        try {
+
+            if (Footer::count() >= 2) {
+                return back()->with(['error' => 'You can only create a maximum of 3 Record records']);
+            }
+            $footerdata = $request->validated();
+            Footer::create($footerdata);
+            return redirect()->back()->with(['Success' => 'Footer Created Succesfully']);
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with(['error' => 'There was an error creating the data. Please try again.']);
+        }
     }
 
 
-    public function publish(Request $request ,$id){
+    public function publish(Request $request, $id)
+    {
 
 
-        $footer = Footer::where('id',$id)->update([
+        $footer = Footer::where('id', $id)->update([
             'published' => $request->input('status') === 'on' ? 'Yes' : 'No',
         ]);
-        if($footer){
+        if ($footer) {
             Footer::where('id', '!=', $id)->update([
                 'published' => 'No',
             ]);
         }
-        return redirect()->back()->with('Success', 'Footer created Succesfully');
+        return redirect()->back()->with(['success' => 'Footer Published Succesfully']);
     }
-    
+
 
     /**
      * Display the specified resource.

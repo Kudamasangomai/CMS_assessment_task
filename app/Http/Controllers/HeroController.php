@@ -34,11 +34,11 @@ class HeroController extends Controller
 
         $herodata = $request ->validated();
         $data = Hero::first();    
-        $path = $request->hasFile('image')  ? $request->file('image')->store('uploads', 'public') : $data->image;
+        $path = $request->hasFile('image')  ? $request->file('image')->store('uploads', 'public') : 'a';
 
         $hero= Hero::updateOrCreate([
             
-            'id'   => $data->id
+            'id' => isset($data->id) ? $data->id : null
         ],[
             'title'     => $request->title,
             'description' => $request->description,

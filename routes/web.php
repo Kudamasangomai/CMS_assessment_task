@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FooterController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\ServiceController;
 */
 
 
-Route::get('/',[WelcomeController::class,'index']);
+Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 Auth::routes();
 
 
@@ -32,13 +33,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('/site_settings',SiteSettingsController::class);
     Route::post('/site_settings/{id}/publish',[SiteSettingsController::class,'publish'])->name('site_settings.publish');
 
-    Route::resource('/footer',FooterController::class)->middleware('auth');
+    Route::resource('/footer',FooterController::class);
     Route::post('/footer/{id}/publish',[FooterController::class,'publish'])->name('footer.publish'); 
     
     Route::resource('/hero',HeroController::class);
 
     Route::resource('/services',ServiceController::class);
 
+    Route::resource('/about',AboutController::class);
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });
 

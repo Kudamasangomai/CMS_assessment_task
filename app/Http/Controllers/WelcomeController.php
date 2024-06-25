@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Hero;
 use App\Models\Footer;
 use App\Models\Service;
@@ -20,6 +21,7 @@ class WelcomeController extends Controller
         $footer = Footer::where('published','Yes')->first();
         $hero = Hero::first();
         $service = Service::all();
-        return view('welcome',compact('site','footer','hero','service','icon'));
+        $about = About::first();
+        return view('welcome',compact('site','footer','hero','service','about','icon'));
     }
 }
