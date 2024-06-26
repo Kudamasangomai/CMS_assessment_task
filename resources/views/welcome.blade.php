@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{{ $site->site_title }} - {{ $site->site_tagline }}</title>
+    <title>{{ $site ? $site->site_title : '' }} - {{ $site ? $site->tag_line : '' }}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/LineIcons.2.0.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('css/animate.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/tiny-slider.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}" /> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
@@ -32,13 +29,13 @@
                     <div class="nav-inner">
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="{{ route('welcome') }}">
+                            <a class="navbar-brand" href="{{ route('welcome') }}" style="color: white">
 
                                 <img src="assets/images/logo/logo.jpg"
                                     style="width: 50px; height: 50px; object-fit: cover;
                                     border: 2px solid {{ $site->site_colour }}; border-radius: 100px;
                                   "
-                                    alt="Logo"> {{ $site->site_title }}
+                                    alt="Logo">{{ $site->site_title }}
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -125,8 +122,9 @@
 
                 <div class="col-md-6 about">
                     <div class="p-4">
-                        <span class="subheading">- {{ $about ? $about->titledescription : '' }}</span>
-                        <h2 class="fw-bold heading">{{ $about ? $about->title : '' }}</h2>
+                        <h2 class="fw-bold heading">- {{ $about ? $about->title : '' }}</h2>
+                        <span class="subheading"> {{ $about ? $about->titledescription : '' }}</span>
+                    
                         <ul class="nav nav-pills nav-tab-light mb-3" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#about-tab"
@@ -302,22 +300,36 @@
     <!--/ End Pricing Table Area -->
 
     <!-- Start Call To Action Area -->
-    <section class="section call-action" style="background-color: {{ $site->site_colour }}">>
+    <section class="section call-action" style="background-color: {{ $site->site_colour }}">
+
+        @if ($footer)
+            
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                     <div class="cta-content">
-                        <h2 class="wow fadeInUp">{{ $footer->title }} <br>
+                        <h2 class="wow fadeInUp">
+                        
+                            {{  $footer->title  }}
+                            <br>
                         </h2>
-                        <p class="wow fadeInUp">{{ $footer->description }}</p>
+                        <p class="wow fadeInUp">
+                        
+    
+                            {{ $footer->description  }}
+                        </p>
                         <div class="button wow fadeInUp">
                             <a href="javascript:void(0)" class="btn"
-                                style="color: black">{{ $footer->button_text }}</a>
+                                style="color: black">
+                                {{ $footer->button_text  }}
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
     </section>
     <!-- End Call To Action Area -->
 

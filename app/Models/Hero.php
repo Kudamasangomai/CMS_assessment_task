@@ -20,11 +20,4 @@ class Hero extends Model
     
 
     ];
-
-    protected static function booted()
-    {
-        static::creating(function ($hero) {
-            $hero->user_id = Auth::user()->id;
-        });
-    }
 }

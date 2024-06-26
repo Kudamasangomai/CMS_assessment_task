@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Http\Requests\StoreAboutRequest;
 use App\Http\Requests\UpdateAboutRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AboutController extends Controller
 {
@@ -48,6 +49,7 @@ class AboutController extends Controller
             'historytitle' => $request->historytitle,
             'historydescription' => $request->historydescription,
             'aboutimage' =>  $path,
+          'user_id' => Auth::user()->id
         
         ]);
         return redirect()->back()->with(['success' => 'About Section Saved Successfully']);

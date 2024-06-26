@@ -18,10 +18,5 @@ class Footer extends Model
     ];
 
 
-    protected static function booted()
-{
-    static::creating(function ($footer) {
-        $footer->user_id = Auth::user()->id;
-    });
-}
+
 }

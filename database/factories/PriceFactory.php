@@ -17,7 +17,13 @@ class PriceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'subscription' => 'al',
+            'description' =>  'If You try To Fail and Succeed have you failed or succeeded',
+            'price' => fake()->randomDigit,
+           'features' => 'Web Development , Mobile app Developement, Proof Read',
+          
         ];
     }
 }
+
+

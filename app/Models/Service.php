@@ -16,11 +16,4 @@ class Service extends Model
         'user_id',
         
     ];
-
-    protected static function booted()
-    {
-        static::creating(function ($service) {
-            $service->user_id = Auth::user()->id;
-        });
-    }
 }

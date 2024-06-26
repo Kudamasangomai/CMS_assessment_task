@@ -22,10 +22,5 @@ class About extends Model
         'aboutimage'
     ];
 
-    protected static function booted()
-    {
-        static::creating(function ($about) {
-            $about->user_id = Auth::user()->id;
-        });
-    }
+  
 }

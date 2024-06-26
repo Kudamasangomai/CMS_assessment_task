@@ -22,5 +22,7 @@ class WelcomeController extends Controller
         $about = About::first();
         $prices = Price::all();
         return view('welcome', compact('site', 'footer', 'hero', 'service', 'about', 'prices'));
+
+
     }
 }

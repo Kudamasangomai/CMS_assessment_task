@@ -92,7 +92,6 @@ class SiteSettingsController extends Controller
         $site->update([
             "site_title" => $request->site_title,
             "site_tagline" =>  $request->site_tagline,
-            "site_icon" =>  $request->site_icon,
             "site_colour" =>  $request->site_colour,
         ]);
 

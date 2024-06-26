@@ -26,13 +26,7 @@
         </div>
       
         <div class="row mb-3">
-            <div class="col">
-                @error('site_icon')
-                    <p class="text-red"> {{ $message }}</p>
-                @enderror
-                <label>Icon</label>
-                <input type="text" class="form-control" placeholder="icon" name="site_icon">
-            </div>
+         
             <div class="col">
                 @error('site_colour')
                     <p class="text-red"> {{ $message }}</p>

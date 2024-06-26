@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class ServiceFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::first();
         return [
-            //
+            'title' => fake()->word(),
+            'description' => fake()->sentence(),
+            'user_id' => $user->id,
         ];
     }
 }

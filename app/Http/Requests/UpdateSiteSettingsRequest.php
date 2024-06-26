@@ -24,7 +24,6 @@ class UpdateSiteSettingsRequest extends FormRequest
         return [
             "site_title" => 'required',
             "site_tagline" => 'required',
-            "site_icon" => 'required',
             "site_colour" => 'required',
         ];
     }

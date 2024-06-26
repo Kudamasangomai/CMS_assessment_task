@@ -18,7 +18,6 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Tag Line</th>
-          <th scope="col">Site Icon</th>
           <th scope="col">Status </th>
           <th scope="col">Theme Colour</th>
           <th scope="col">Action</th>
@@ -33,7 +32,6 @@
 
           <td><a href="{{ route('site_settings.show',$site) }}">{{ $site->site_title }}</a></td>
           <td>{{ $site->site_tagline }}</td>
-          <td>{{ $site->site_icon }}</td>
           <td>{{ $site->Status }}</td>
           <td style="background-color: {{ $site->site_colour }}">{{ $site->site_colour }} </td>
           <td>

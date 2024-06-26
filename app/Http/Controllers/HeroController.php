@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hero;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreHeroRequest;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\UpdateHeroRequest;
@@ -45,6 +46,7 @@ class HeroController extends Controller
             'button_text_one'    => $request->button_text_one,
             'button_text_two'   => $request->button_text_two,
             'image'       => $path,
+            'user_id' => Auth::user()->id,
         
         ]);
         return redirect()->back()->with(['success' => 'Hero Section Saved Successfully']);

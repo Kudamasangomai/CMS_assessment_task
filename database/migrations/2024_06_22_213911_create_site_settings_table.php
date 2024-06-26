@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('site_title');
             $table->string('site_tagline');
-            $table->string('site_icon');
             $table->string('site_colour');
             $table->enum('Status', ['Active', 'Not-Active'])->default('Not-Active');
             $table->foreignId('user_id')->constrained();

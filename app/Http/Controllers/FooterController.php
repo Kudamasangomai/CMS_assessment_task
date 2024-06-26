@@ -37,6 +37,7 @@ class FooterController extends Controller
                 return back()->with(['error' => 'You can only create a maximum of 3 Record records']);
             }
             $footerdata = $request->validated();
+            $footerdata['user_id'] = Auth::user()->id;
             Footer::create($footerdata);
             return redirect()->back()->with(['Success' => 'Footer Created Succesfully']);
         } catch (\Exception $e) {
