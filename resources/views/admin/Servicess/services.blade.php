@@ -16,14 +16,14 @@
                     <p class="text-red"> {{ $message }}</p>
                 @enderror
                 <input type="text" class="form-control" placeholder="Title" name="title"
-                    value="{{ $hero['title'] ?? '' }}">
+                    value="{{ old('title') }}">
             </div>
             <div class="col mb-3">
                 @error('description')
                     <p class="text-red"> {{ $message }}</p>
                 @enderror
                 <input type="text" class="form-control" placeholder="Description" name="description"
-                    value="{{ $hero['description'] ?? '' }}">
+                    value="{{ old('description') }}">
             </div>
         </div>
 

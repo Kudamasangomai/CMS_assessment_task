@@ -17,13 +17,6 @@ class ServiceController extends Controller
         return view('admin.Servicess.services',compact('services'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -43,21 +36,15 @@ class ServiceController extends Controller
             return redirect()->back()->with(['error' => 'There was an error creating the data. Please try again.']);
           }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
-    {
-        //
-    }
+ 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::findorFail($id);
+        return view('admin.Servicess.editservice',compact('service'));
     }
 
     /**
@@ -65,7 +52,16 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        
+        $request->validated();
+
+        $service->update([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('services.index')->with('success', 'Service Successfully  Updated');
+    
     }
 
     /**
@@ -73,6 +69,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect()->back()->with(['success' => 'Service Successfully deleted']);
+         
     }
 }

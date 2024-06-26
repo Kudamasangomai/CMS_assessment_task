@@ -18,14 +18,6 @@ class PriceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StorePriceRequest $request)
@@ -46,13 +38,6 @@ class PriceController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Price $price)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -68,7 +53,22 @@ class PriceController extends Controller
      */
     public function update(UpdatePriceRequest $request, Price $price)
     {
-        //
+        $request->validated();
+        try {
+            $price->update([
+                
+                'description' => $request->description,
+                'price' => $request->price,
+                'features' => $request->features,
+            ]);
+    
+            return redirect()->route('price.index')->with('success', 'Data Successfully  Updated');
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
+
+ 
+    
     }
 
     /**
@@ -76,6 +76,15 @@ class PriceController extends Controller
      */
     public function destroy(Price $price)
     {
-        //
+     try {
+        $price->delete();
+        return redirect()->back()->with(['success' => 'Service Successfully deleted']);
+         
+     } catch (\Exception $e) {
+        $price->delete();
+        return redirect()->back()->with(['error' => $e->getMessage()]);
+         
+     }
+      
     }
 }

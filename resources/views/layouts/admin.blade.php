@@ -69,7 +69,7 @@
 
                         <li>
                         <li class="nav-item">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('logout') }}" style="color:white"
                                 onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
