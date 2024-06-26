@@ -13,6 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/LineIcons.2.0.css') }}" />
 
     <!-- Scripts -->
@@ -59,7 +60,7 @@
                             <a href="/services">Services</a>
                         </li>
                         <li>
-                            <a href="/prices">Prices</a>
+                            <a href="/price">Prices</a>
                         </li>
 
                         <li>
@@ -90,7 +91,7 @@
                 @include('layouts.messages')
 
             </div>
-            <button class="btn btn-success">Click Me</button>
+          
             @yield('content')
         </div>
     </div>

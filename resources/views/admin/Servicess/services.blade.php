@@ -43,8 +43,7 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
-                <th scope="col" style="width: 600px; 
-  word-wrap: break-word;">Description</th>
+                <th scope="col" style="width: 600px;word-wrap: break-word;">Description</th>
                 <th scope="col" style="width: 300px">Action</th>
             </tr>
         </thead>
@@ -57,18 +56,18 @@
                     <td>{{ $services->description }}</td>
 
                     <td>
-                 
-                        <a href="{{ route('services.edit', $services->id) }}"> Edit</a> 
-                     
-                       
+
+                        <a href="{{ route('services.edit', $services->id) }}"> Edit</a>
+
+
                         <form action="{{ route('services.destroy', $services) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <a href="" onclick="event.preventDefault(); this.closest('form').submit()">Delete</a>
                         </form>
 
-                   
-                       
+
+
                     </td>
                 </tr>
             @empty
